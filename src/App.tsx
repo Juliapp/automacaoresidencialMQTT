@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [lampada, setlampada] = useState(false);
+  const [lampadaJardim, setlampadaJardim] = useState(false);
+  const [lampadaGaragem, setlampadaGaragem] = useState(false);
   const [ar, setar] = useState(false);
   const [alarme, setalarme] = useState(false);
 
@@ -14,9 +15,13 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <p>Lâmpadas: {toggleConvert(lampada)}</p>
-        <button onClick={() => setlampada(!lampada)}>Toggle</button>
+        <p>Lâmpada Garagem: {toggleConvert(lampadaGaragem)}</p>
+        <button onClick={() => setlampadaGaragem(!lampadaGaragem)}>
+          Toggle
+        </button>
+
+        <p>Lâmpada Jardim: {toggleConvert(lampadaJardim)}</p>
+        <button onClick={() => setlampadaJardim(!lampadaJardim)}>Toggle</button>
 
         <p>Ar condicionado: {toggleConvert(ar)}</p>
         <button onClick={() => setar(!ar)}>Toggle</button>
