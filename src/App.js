@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-// import logo from './logo.svg';
+import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
   const [lampadaJardim, setlampadaJardim] = useState(false);
@@ -8,7 +8,7 @@ function App() {
   const [ar, setar] = useState(false);
   const [alarme, setalarme] = useState(false);
 
-  const toggleConvert = (value: boolean) => {
+  const toggleConvert = (value) => {
     return value ? 'Ligado' : 'Desligado';
   };
 
