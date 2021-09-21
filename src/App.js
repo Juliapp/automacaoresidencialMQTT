@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 
@@ -15,8 +14,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>Lâmpada Garagem: {toggleConvert(lampadaGaragem)}</p>
-        <button onClick={() => setlampadaGaragem(!lampadaGaragem)}>
+        <p className="">Lâmpada Garagem: {toggleConvert(lampadaGaragem)}</p>
+        <button
+          className="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700"
+          onClick={() => setlampadaGaragem(!lampadaGaragem)}
+        >
           Toggle
         </button>
 
