@@ -1,38 +1,30 @@
-import './App.css';
-import { useState } from 'react';
+import { Popover } from '@headlessui/react';
+import Switch from './components/Switch';
 
-function App() {
-  const [lampadaJardim, setlampadaJardim] = useState(false);
-  const [lampadaGaragem, setlampadaGaragem] = useState(false);
-  const [ar, setar] = useState(false);
-  const [alarme, setalarme] = useState(false);
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ');
+}
 
-  const toggleConvert = (value) => {
-    return value ? 'Ligado' : 'Desligado';
-  };
-
+export default function Example() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p className="">Lâmpada Garagem: {toggleConvert(lampadaGaragem)}</p>
-        <button
-          className="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700"
-          onClick={() => setlampadaGaragem(!lampadaGaragem)}
-        >
-          Toggle
-        </button>
+    <div className="relative bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <header className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
+          <div className="flex justify-start lg:w-0 lg:flex-1">
+            <a href="/">
+              <img
+                className="h-8 w-auto sm:h-10"
+                src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                alt=""
+              />
+            </a>
+          </div>
 
-        <p>Lâmpada Jardim: {toggleConvert(lampadaJardim)}</p>
-        <button onClick={() => setlampadaJardim(!lampadaJardim)}>Toggle</button>
-
-        <p>Ar condicionado: {toggleConvert(ar)}</p>
-        <button onClick={() => setar(!ar)}>Toggle</button>
-
-        <p>Alarme: {toggleConvert(alarme)}</p>
-        <button onClick={() => setalarme(!alarme)}>Toggle</button>
-      </header>
+          <div className="md:flex justify-end">
+            <Switch />
+          </div>
+        </header>
+      </div>
     </div>
   );
 }
-
-export default App;
