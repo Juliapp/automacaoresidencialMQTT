@@ -4,7 +4,9 @@ import useDarkMode from '../../hooks/useDarkTheme';
 const DarkModeSwitch = () => {
   const { isDarkMode, toggleTheme } = useDarkMode();
   return (
-    <span onClick={() => toggleTheme()}>{isDarkMode ? 'dark' : 'light'} </span>
+    <span className="dark:text-gray-50" onClick={() => toggleTheme()}>
+      {isDarkMode ? 'dark' : 'light'}
+    </span>
   );
 };
 

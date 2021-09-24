@@ -4,7 +4,7 @@ import icon from '../../assets/icon.svg';
 import './style.css';
 const Card = () => {
   return (
-    <div className="card-container">
+    <div className="card-container card">
       <div className="card-switch">
         <Switch />
       </div>
@@ -15,7 +15,7 @@ const Card = () => {
         </div>
         <div className="flex-initial my-auto">
           <span className="card-title">Nome</span>
-          <h3 className="card-body">Mais alguma coisa</h3>
+          <h3 className="card-subtitle">Mais alguma coisa</h3>
         </div>
       </div>
     </div>

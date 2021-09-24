@@ -13,18 +13,24 @@ export default function useDarkTheme() {
     document.documentElement.classList.remove('dark');
   }
 
-  const [theme, setTheme] = useState(currentTheme ?? defaultValue);
+  const [theme, setTheme] = useState((currentTheme && 'dark') ?? defaultValue);
+  const [isDarkMode, setIsDarkMode] = useState(currentTheme || false);
 
   function themeSwitch(theme) {
-    theme === 'dark'
-      ? document.documentElement.classList.add('dark')
-      : document.documentElement.classList.remove('dark');
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+      setIsDarkMode(true);
+    } else {
+      document.documentElement.classList.remove('dark');
+      setIsDarkMode(false);
+    }
+
     localStorage.setItem('theme', theme);
     setTheme(theme);
   }
 
   return {
-    isDarkMode: theme === 'dark',
+    isDarkMode,
     setDarkMode: () => themeSwitch('dark'),
     setLightMode: () => themeSwitch('light'),
     toggleTheme: () =>
