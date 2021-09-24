@@ -14,8 +14,8 @@ const Card = () => {
           <img src={icon} alt="" />
         </div>
         <div className="flex-initial my-auto">
-          <span>Nome</span>
-          <h4>Mais alguma coisa</h4>
+          <span className="card-title">Nome</span>
+          <h3 className="card-body">Mais alguma coisa</h3>
         </div>
       </div>
     </div>
