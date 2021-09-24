@@ -1,10 +1,7 @@
 import Header from './components/Header';
 import Card from './components/Card';
-import useDarkMode from './hooks/useDarkMode';
 
 export default function App() {
-  useDarkMode(true);
-
   return (
     <div className="container mx-auto flex flex-col">
       <Header />

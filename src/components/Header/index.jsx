@@ -1,5 +1,5 @@
 import React from 'react';
-import Switch from '../Switch';
+import DarkModeSwitch from '../DarkModeSwitch';
 
 const Header = () => {
   // return (
@@ -32,7 +32,8 @@ const Header = () => {
         </a>
       </div>
       <div className="py-auto flex">
-        <Switch className="sm:h-4" />
+        {/* <Switch className="sm:h-4" /> */}
+        <DarkModeSwitch />
       </div>
     </header>
   );

@@ -2,3 +2,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply bg-gray-50 dark:bg-gray-900 transition duration-1000;
+}
+
+@layer component {
+  .primary-background {
+    @apply bg-gray-50 dark:bg-gray-900;
+  }
+}
