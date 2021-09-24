@@ -1,29 +1,20 @@
-import { Popover } from '@headlessui/react';
-import Switch from './components/Switch';
+import Header from './components/Header';
+import Card from './components/Card';
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
-
-export default function Example() {
+export default function App() {
   return (
-    <div className="relative bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <header className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
-          <div className="flex justify-start lg:w-0 lg:flex-1">
-            <a href="/">
-              <img
-                className="h-8 w-auto sm:h-10"
-                src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                alt=""
-              />
-            </a>
-          </div>
-
-          <div className="md:flex justify-end">
-            <Switch />
-          </div>
-        </header>
+    <div className="container mx-auto flex flex-col">
+      <Header />
+      <div className="px-2 md:px-0  gap-2 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
       </div>
     </div>
   );

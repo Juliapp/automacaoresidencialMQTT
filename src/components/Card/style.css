@@ -1,0 +1,7 @@
+.card-container {
+  @apply rounded-md bg-gray-200 p-6 flex flex-col gap-2;
+}
+
+.card-switch {
+  @apply flex h-1 justify-end;
+}
