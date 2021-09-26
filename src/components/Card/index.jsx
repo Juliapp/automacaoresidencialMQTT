@@ -1,8 +1,7 @@
 import React from 'react';
 import Switch from '../Switch';
-import icon from '../../assets/icon.svg';
 import './style.css';
-const Card = () => {
+const Card = ({ icon, titulo = 'Nome', descricao }) => {
   return (
     <div className="card-container card">
       <div className="card-switch">
@@ -11,11 +10,12 @@ const Card = () => {
 
       <div className="flex flex-col sm:flex-row">
         <div className="mx-auto sm:mx-0 sm:mr-2 ">
-          <img src={icon} alt="" />
+          {/* <img src={icon} alt="" /> */}
+          <i className={`text-7xl sm:mr-1 ${icon}`} />
         </div>
         <div className="flex-initial my-auto">
-          <span className="card-title">Nome</span>
-          <h3 className="card-subtitle">Mais alguma coisa</h3>
+          <span className="card-title">{titulo}</span>
+          {descricao && <h3 className="card-subtitle">{descricao}</h3>}
         </div>
       </div>
     </div>
