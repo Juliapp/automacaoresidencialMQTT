@@ -14,7 +14,11 @@ export default function App() {
           titulo="Ar Condicionado"
           descricao="Quarto Principal"
         />
-        <Card />
+        <Card
+          icon="icon-lamp-bulb"
+          titulo="Iluminação"
+          descricao="Sala de estar"
+        />
         <Card />
         <Card />
         <Card />

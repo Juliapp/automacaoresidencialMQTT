@@ -5,7 +5,7 @@ const DarkModeSwitch = () => {
   const { isDarkMode, toggleTheme } = useDarkMode();
   return (
     <span
-      className="dark:text-gray-50 py-2 px-3 rounded hover:bg-gray-300 dark:hover:bg-gray-700 hover:bg-opacity-70 transition duration-1000"
+      className="cursor-pointer flex dark:text-gray-50 p-3 rounded hover:bg-gray-300 dark:hover:bg-gray-700 hover:bg-opacity-70 transition duration-1000"
       onClick={() => toggleTheme()}
     >
       <i

@@ -30,7 +30,11 @@
 }
 .icon-air-conditioner:before {
   content: '\e901';
-  color: #93c5fd;
+  color: #60a5fa;
+}
+.icon-lamp-bulb:before {
+  content: '\e90d';
+  color: #f59e0b;
 }
 .icon-alarm:before {
   content: '\e902';
@@ -64,9 +68,6 @@
 }
 .icon-internal-area:before {
   content: '\e90c';
-}
-.icon-lamp-bulb:before {
-  content: '\e90d';
 }
 .icon-light-mode:before {
   content: '\e90e';
