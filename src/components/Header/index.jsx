@@ -21,7 +21,7 @@ const Header = () => {
   // );
   return (
     // <header className="flex justify-between items-center p-6 container">
-    <header className="flex justify-between items-center p-6 container mx-auto">
+    <header className="flex justify-between items-center p-3 sm:p-6 container mx-auto">
       <div className="flex justify-start lg:w-0 lg:flex-1">
         <a href="/">
           <img
