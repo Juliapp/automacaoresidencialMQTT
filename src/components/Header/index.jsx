@@ -19,7 +19,7 @@ const Header = () => {
       ? 'bg-yellow-600'
       : connectionStatus.status === 200
       ? 'bg-green-600'
-      : connectionStatus === 400
+      : connectionStatus.status === 400
       ? 'bg-red-600'
       : 'bg-gray-400';
 
@@ -39,7 +39,7 @@ const Header = () => {
 
       <div className="flex flex-1 justify-center">
         <div
-          className={`w-2 h-2 flex self-center mr-2 rounded-lg  ${color}`}
+          className={`w-2 h-2 flex self-center mr-2 rounded-lg animate-pulse ${color}`}
         ></div>
         <h1 className="text-base transition duration-1000 dark:text-gray-50">{`${connectionStatus.label}`}</h1>
       </div>

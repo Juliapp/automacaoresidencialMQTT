@@ -6,6 +6,25 @@ import { v4 } from 'uuid';
 export const MqttContext = createContext();
 
 export default function Connector({ children }) {
+  // const reconnect = (client) => {
+  //   console.log('entrou no reconect');
+  //   setTimeout(() => {
+  //     console.log('entrou no setTimeout');
+  //     setConnectionStatus({ status: 100, label: 'Reconectando...' });
+  //     client.connect({
+  //       onSuccess: () => {
+  //         setConnectionStatus({ status: 200, label: 'Conectado' });
+  //       },
+  //       onFailure: () => {
+  //         setConnectionStatus({ status: 400, label: 'Erro ao se conectar' });
+  //       },
+  //       password: process.env.REACT_APP_PASSWORD,
+  //       userName: process.env.REACT_APP_USERNAME,
+  //       useSSL: true,
+  //     });
+  //   }, 500);
+  // };
+
   const mountedRef = useRef(true);
   const [connectionStatus, setConnectionStatus] = useState({
     status: 100,
@@ -14,13 +33,13 @@ export default function Connector({ children }) {
   const [client, setClient] = useState();
 
   const mqttConnect = useCallback(async () => {
-    console.log('vai conectar');
     setConnectionStatus({ status: 100, label: 'Conectando' });
     var client = new Paho.Client(
       process.env.REACT_APP_HOST,
       parseInt(process.env.REACT_APP_PORT),
       v4()
     );
+
     client.connect({
       onSuccess: () => {
         setConnectionStatus({ status: 200, label: 'Conectado' });
@@ -31,10 +50,13 @@ export default function Connector({ children }) {
       password: process.env.REACT_APP_PASSWORD,
       userName: process.env.REACT_APP_USERNAME,
       useSSL: true,
+      keepAliveInterval: 30,
+      reconnect: true,
     });
 
-    client.onConnectionLost = () =>
+    client.onConnectionLost = () => {
       setConnectionStatus({ status: 400, label: 'Conexão perdida' });
+    };
 
     setClient(client);
   }, []);

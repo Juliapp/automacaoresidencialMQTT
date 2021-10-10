@@ -4,7 +4,9 @@ import Switch from '../Switch';
 const AutomaticMode = ({ automaticMode, setAutomaticMode }) => {
   return (
     <div className="card rounded-md p-3 sm:p-6 flex flex-1 gap-2 content-between px-2">
-      <i className={`text-6xl sm:mr-2 icon-app-menu self-center mx-2`} />
+      <i
+        className={`text-6xl sm:mr-2 icon-app-menu self-center mx-2 transition duration-1000 dark:text-gray-100 text-gray-700`}
+      />
       <div className="flex flex-col flex-grow justify-center">
         <span className="card-title">Modo Automático</span>
         <h3 className="card-subtitle">
