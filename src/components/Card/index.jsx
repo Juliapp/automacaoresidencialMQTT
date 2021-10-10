@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Sorting from '../Sorting';
 import Switch from '../Switch';
+import ModalFrame from '../ModalFrame';
 import './style.css';
 const Card = ({ icon, titulo = 'Nome', descricao, togglable }) => {
+  const [modalOpen, setModalOpen] = useState(false);
   return (
     <div className="card-container card">
       {togglable ? (
@@ -9,11 +12,12 @@ const Card = ({ icon, titulo = 'Nome', descricao, togglable }) => {
           <Switch />
         </div>
       ) : (
-        <div className="py-auto flex self-end">
-          <span className="card-switch cursor-pointer dark:text-gray-50 p-3 rounded hover:bg-gray-300 dark:hover:bg-gray-700 hover:bg-opacity-70 transition duration-1000">
-            <i className={`text-xl icon-sorting`} />
-          </span>
-        </div>
+        <>
+          <div className="flex self-end">
+            <Sorting onClick={() => setModalOpen(!modalOpen)} />
+          </div>
+          <ModalFrame open={modalOpen} setOpen={setModalOpen} />
+        </>
       )}
 
       <div className="flex flex-col sm:flex-row">

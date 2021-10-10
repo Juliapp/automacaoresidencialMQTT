@@ -3,11 +3,9 @@ import AlarmCard from './components/AlarmCard';
 import AutomaticMode from './components/AutomaticMode';
 import Card from './components/Card';
 import Header from './components/Header';
-import useMqtt from './hooks/useMqtt';
 
 export default function App() {
   const [automaticMode, setAutomaticMode] = useState(false);
-  const { connectionStatus } = useMqtt();
 
   // function handleClick(message) {
   //   const payload = parsePayload('TOPICO', message);
