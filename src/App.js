@@ -20,7 +20,7 @@ export default function App() {
         Disable led
       </button> */}
       <Header />
-      <h1>{`Status: ${connectionStatus.label}`}</h1>
+
       <AutomaticMode
         automaticMode={automaticMode}
         setAutomaticMode={setAutomaticMode}
