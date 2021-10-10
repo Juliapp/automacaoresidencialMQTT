@@ -1,8 +1,8 @@
-import Header from './components/Header';
-import Card from './components/Card';
+import { useState } from 'react';
 import AlarmCard from './components/AlarmCard';
 import AutomaticMode from './components/AutomaticMode';
-import { useEffect, useState } from 'react';
+import Card from './components/Card';
+import Header from './components/Header';
 import useMqtt from './hooks/useMqtt';
 
 export default function App() {
