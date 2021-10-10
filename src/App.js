@@ -7,7 +7,7 @@ import useMqtt from './hooks/useMqtt';
 
 export default function App() {
   const [automaticMode, setAutomaticMode] = useState(false);
-  const { connectionStatus, client } = useMqtt();
+  const { connectionStatus } = useMqtt();
 
   // function handleClick(message) {
   //   const payload = parsePayload('TOPICO', message);
