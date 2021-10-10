@@ -4,10 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './assets/fonts/icons.css';
+import Connector from './context/Connector';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Connector>
+      <App />
+    </Connector>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -29,3 +29,7 @@ body {
   @apply text-gray-500 text-sm transition duration-1000;
   @apply dark:text-gray-300;
 }
+
+.card-switch {
+  @apply flex h-1 justify-end;
+}

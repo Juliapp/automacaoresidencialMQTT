@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactSwitch from 'react-switch';
 
-const Switch = ({ ...rest }) => {
-  const [checked, setChecked] = useState(false);
+const Switch = ({ checked, setChecked, ...rest }) => {
+  // const [checked, setChecked] = useState(false);
   const handleChange = (nextChecked) => {
     setChecked(nextChecked);
   };
