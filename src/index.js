@@ -5,11 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './assets/fonts/icons.css';
 import Connector from './context/Connector';
+import States from './context/States';
 
 ReactDOM.render(
   <React.StrictMode>
     <Connector>
-      <App />
+      <States>
+        <App />
+      </States>
     </Connector>
   </React.StrictMode>,
   document.getElementById('root')
