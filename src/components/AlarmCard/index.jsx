@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import ButtonSwitch from '../ButtonSwitch';
 import ModalFrame from '../ModalFrame';
 import Sorting from '../Sorting';
-import Switch from '../Switch';
 
-const AlarmCard = ({ togglable, status }) => {
+const AlarmCard = ({ togglable, status, onClickButtonSwitch }) => {
   const [modalOpen, setModalOpen] = useState(false);
   return (
     <div className="card rounded-md p-3 sm:p-6 flex flex-1 gap-2 content-between">
@@ -17,7 +16,10 @@ const AlarmCard = ({ togglable, status }) => {
       </div>
       <div className="card-switch">
         {togglable ? (
-          <ButtonSwitch label={status ? 'ON' : 'OFF'} />
+          <ButtonSwitch
+            label={status ? 'ON' : 'OFF'}
+            onClick={onClickButtonSwitch}
+          />
         ) : (
           <>
             <Sorting onClick={() => setModalOpen(!modalOpen)} />

@@ -15,13 +15,13 @@ export default function Connector({ children }) {
 
   const mqttConnect = useCallback(async () => {
     setConnectionStatus({ status: 100, label: 'Conectando' });
-    var client = new Paho.Client(
+    var instanceCliente = new Paho.Client(
       process.env.REACT_APP_HOST,
       parseInt(process.env.REACT_APP_PORT),
       v4()
     );
 
-    client.connect({
+    instanceCliente.connect({
       onSuccess: () => {
         setConnectionStatus({ status: 200, label: 'Conectado' });
       },
@@ -35,11 +35,11 @@ export default function Connector({ children }) {
       reconnect: true,
     });
 
-    client.onConnectionLost = () => {
+    instanceCliente.onConnectionLost = () => {
       setConnectionStatus({ status: 400, label: 'Conexão perdida' });
     };
 
-    setClient(client);
+    setClient(instanceCliente);
   }, []);
   useEffect(() => {
     if (!client) {

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import Sorting from '../Sorting';
-import Switch from '../Switch';
-import ModalFrame from '../ModalFrame';
-import './style.css';
 import ButtonSwitch from '../ButtonSwitch';
+import ModalFrame from '../ModalFrame';
+import Sorting from '../Sorting';
+import './style.css';
 const Card = ({
   icon,
   titulo = 'Nome',
@@ -11,6 +10,7 @@ const Card = ({
   togglable,
   status,
   info,
+  onClickButtonSwitch,
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
   return (
@@ -26,7 +26,10 @@ const Card = ({
         </span>
 
         {togglable ? (
-          <ButtonSwitch label={status ? 'ON' : 'OFF'} />
+          <ButtonSwitch
+            label={status ? 'ON' : 'OFF'}
+            onClick={onClickButtonSwitch}
+          />
         ) : (
           <>
             <Sorting onClick={() => setModalOpen(!modalOpen)} />
