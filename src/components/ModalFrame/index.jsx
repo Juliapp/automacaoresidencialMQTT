@@ -2,7 +2,7 @@
 import { Fragment, useRef } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 
-export default function ModalFrame({ open, setOpen }) {
+export default function ModalFrame({ open, setOpen, children }) {
   const cancelButtonRef = useRef(null);
 
   return (
@@ -11,7 +11,7 @@ export default function ModalFrame({ open, setOpen }) {
         as="div"
         className="fixed z-10 inset-0 overflow-y-auto"
         initialFocus={cancelButtonRef}
-        onClose={setOpen}
+        onClose={() => setOpen(false)}
       >
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <Transition.Child
@@ -66,6 +66,7 @@ export default function ModalFrame({ open, setOpen }) {
                   </div>
                 </div>
               </div>
+              {children}
               {/* Área de configuração */}
               <div className="bg-gray-200 dark:bg-gray-900 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button

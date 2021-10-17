@@ -34,7 +34,7 @@ export default function App() {
   }
 
   return (
-    <div className="container gap-4 mx-auto flex flex-col px-2 ">
+    <div className="container gap-4 mx-auto flex flex-col px-2">
       {/* <button type="button" onClick={() => handleClick('false')}>
         Disable led
       </button> */}
