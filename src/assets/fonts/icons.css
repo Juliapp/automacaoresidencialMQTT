@@ -25,73 +25,76 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-add:before {
+.icon-list:before {
   content: '\e900';
 }
-.icon-air-conditioner:before {
+.icon-add:before {
   content: '\e901';
+}
+.icon-air-conditioner:before {
+  content: '\e902';
   color: #60a5fa;
 }
-.icon-lamp-bulb:before {
-  content: '\e90d';
-  color: #f59e0b;
-}
 .icon-alarm:before {
-  content: '\e902';
+  content: '\e903';
   color: #ecfdf5;
 }
 .icon-app-menu:before {
-  content: '\e903';
-}
-.icon-approval:before {
   content: '\e904';
 }
-.icon-arrow-left:before {
+.icon-approval:before {
   content: '\e905';
 }
-.icon-arrow-right:before {
+.icon-arrow-left:before {
   content: '\e906';
 }
-.icon-home-empty:before {
+.icon-arrow-right:before {
   content: '\e907';
 }
-.icon-dark-mode:before {
+.icon-Ativo-2:before {
   content: '\e908';
 }
-.icon-garage-area:before {
+.icon-dark-mode:before {
   content: '\e909';
+}
+.icon-garage-area:before {
+  content: '\e90a';
   color: #818cf8;
 }
 .icon-garden-area:before {
-  content: '\e90a';
+  content: '\e90b';
   color: #34d399;
 }
 .icon-house:before {
-  content: '\e90b';
-}
-.icon-internal-area:before {
   content: '\e90c';
 }
-.icon-light-mode:before {
-  content: '\e90e';
+.icon-internal-area:before {
+  content: '\e90d';
 }
-.icon-lightning:before {
+.icon-lamp-bulb:before {
+  content: '\e90e';
+  color: #f59e0b;
+}
+.icon-light-mode:before {
   content: '\e90f';
 }
-.icon-mute:before {
+.icon-lightning:before {
   content: '\e910';
 }
-.icon-notification:before {
+.icon-mute:before {
   content: '\e911';
 }
-.icon-settings:before {
+.icon-notification:before {
   content: '\e912';
 }
-.icon-sorting:before {
+.icon-settings:before {
   content: '\e913';
 }
-.icon-volume-down:before {
+.icon-sorting:before {
   content: '\e914';
+}
+.icon-volume-down:before {
+  content: '\e915';
 }
 .icon-volume-up:before {
   content: '\1f317';

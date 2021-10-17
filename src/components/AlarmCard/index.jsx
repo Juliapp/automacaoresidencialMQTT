@@ -14,7 +14,7 @@ const AlarmCard = ({ togglable, status, onClickButtonSwitch }) => {
           Quando ativo, você pode pré-programar as rotinas da casa via sensores.
         </h3>
       </div>
-      <div className="card-switch">
+      <div className="flex items-center flex-col">
         {togglable ? (
           <ButtonSwitch
             label={status ? 'ON' : 'OFF'}
@@ -26,6 +26,10 @@ const AlarmCard = ({ togglable, status, onClickButtonSwitch }) => {
             <ModalFrame open={modalOpen} setOpen={setModalOpen} />
           </>
         )}
+
+        <button className="mt-2 p-1 rounded cursor-pointer dark:text-gray-50 hover:bg-gray-300 dark:hover:bg-gray-800 hover:bg-opacity-70 transition duration-1000">
+          <i className="icon-list text-2xl flex items-center" />
+        </button>
       </div>
     </div>
   );
