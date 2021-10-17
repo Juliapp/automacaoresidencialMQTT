@@ -6,7 +6,6 @@ import Sorting from '../Sorting';
 
 const AlarmCard = ({ togglable, status, onClickButtonSwitch }) => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [reportOpen, setReportOpen] = useState(false);
 
   return (
     <div className="card rounded-md p-3 sm:p-6 flex flex-1 gap-2 content-between">
