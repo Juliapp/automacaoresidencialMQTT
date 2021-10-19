@@ -145,10 +145,10 @@ export default function Connector({ children }) {
           setJardimLuz(convertedPayload);
           break;
         case TOPIC_ILUMINACAO_JARDIM_MAX:
-          setJardimLuzMax(convertedPayload);
+          setJardimLuzMax(payload);
           break;
         case TOPIC_ILUMINACAO_JARDIM_MIN:
-          setJardimLuzMin(convertedPayload);
+          setJardimLuzMin(payload);
           break;
         case TOPIC_ILUMINACAO_INTERNO:
           setInternoLuz(convertedPayload);
@@ -157,10 +157,10 @@ export default function Connector({ children }) {
           setGaragemLuz(convertedPayload);
           break;
         case TOPIC_ILUMINACAO_GARAGEM_MAX:
-          setGaragemLuzMax(convertedPayload);
+          setGaragemLuzMax(payload);
           break;
         case TOPIC_ILUMINACAO_GARAGEM_MIN:
-          setGaragemLuzMin(convertedPayload);
+          setGaragemLuzMin(payload);
           break;
         case TOPIC_ARCONDICIONADO:
           setAc(convertedPayload);
@@ -169,10 +169,10 @@ export default function Connector({ children }) {
           setAcTemperatura(convertedPayload);
           break;
         case TOPIC_ARCONDICIONADO_MAX:
-          setAcMax(convertedPayload);
+          setAcMax(payload);
           break;
         case TOPIC_ARCONDICIONADO_MIN:
-          setAcMin(convertedPayload);
+          setAcMin(payload);
           break;
         case TOPIC_ARCONDICIONADO_AUSENCIA_PESSOAS:
           setAusenciaPessoas(convertedPayload);
