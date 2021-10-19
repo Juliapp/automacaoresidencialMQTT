@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React from 'react';
 import AlarmCard from './components/AlarmCard';
 import AutomaticMode from './components/AutomaticMode';
 import Card from './components/Card';
@@ -8,7 +8,7 @@ import LuzInterna from './components/ModaisChildrens/LuzInterna';
 import useMqtt from './hooks/useMqtt';
 
 export default function App() {
-  const [automaticMode, setAutomaticMode] = useState(false);
+  // const [automaticMode, setAutomaticMode] = useState(false);
 
   const {
     client,
@@ -24,6 +24,7 @@ export default function App() {
     internoLuz,
     // jardimLuzMax,
     // jardimLuzMin,
+    automaticMode,
     jardimLuz,
   } = useMqtt();
 
@@ -59,7 +60,7 @@ export default function App() {
         setAutomaticMode={setAutomaticMode}
       /> */}
 
-      <AutomaticMode setAutomaticMode={setAutomaticMode} am={automaticMode} />
+      <AutomaticMode am={automaticMode} />
 
       <span className="self-center text-base transition duration-1000 dark:text-gray-50">
         Dispositivos

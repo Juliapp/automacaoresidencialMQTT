@@ -1,18 +1,10 @@
 import React from 'react';
 import useMqtt from '../../hooks/useMqtt';
 import DarkModeSwitch from '../DarkModeSwitch';
+import Tooltip from '@atlaskit/tooltip';
 
 const Header = () => {
   const { connectionStatus } = useMqtt();
-  // const color = () => {
-  //   if (connectionStatus.status === 100) {
-  //     return ';
-  //   } else if (connectionStatus === 200) {
-  //     return 'bg-green-600';
-  //   } else if (connectionStatus === 400) {
-  //     return 'bg-red-600';
-  //   }
-  // };
 
   const color =
     connectionStatus.status === 100
@@ -38,11 +30,21 @@ const Header = () => {
       {/*    */}
 
       <div className="flex flex-1 justify-center">
-        <div
-          className={`w-2 h-2 flex self-center mr-2 rounded-lg animate-pulse ${color}`}
-        ></div>
-        <h1 className="text-base transition duration-1000 dark:text-gray-50">{`${connectionStatus.label}`}</h1>
+        <Tooltip
+          content={`Status da conexão com o broker
+        VERMELHO: Falha na conexão | VERDE: Conectado | LARANJA: Conectando | CINZA: Pronto para conectar`}
+        >
+          <div className="flex">
+            <div
+              className={`w-2 h-2 flex self-center mr-2 rounded-lg animate-pulse ${color}`}
+            ></div>
+            <h1 className="text-base transition duration-1000 dark:text-gray-50">{`${connectionStatus.label}`}</h1>
+          </div>
+        </Tooltip>
+        {/* data-tip="Status da conexão com o broker" */}
+        {/* <ReactTooltip place="bottom" type="light" effect="solid" /> */}
       </div>
+
       <div className="py-auto flex">
         {/* <Switch className="sm:h-4" /> */}
         <DarkModeSwitch />

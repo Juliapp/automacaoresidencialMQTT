@@ -40,16 +40,10 @@ const AC = ({ setOpen }) => {
       <span className="flex justify-center dark:text-gray-50">
         Ar Condicionado
       </span>
-      <label
-        className="block text-gray-500 text-sm font-bold mb-2"
-        for="username"
-      >
+      <label className="block text-gray-500 text-sm font-bold mb-2">
         O ar condicionado irá desligar se não houver presença de pessoas.
       </label>
-      <label
-        className="block text-gray-500 text-sm font-bold mb-2"
-        for="username"
-      >
+      <label className="block text-gray-500 text-sm font-bold mb-2">
         Valor Mínimo
       </label>
       <input
@@ -62,10 +56,7 @@ const AC = ({ setOpen }) => {
         onChange={handleOnMinChange}
         value={minValue}
       />
-      <label
-        className="block text-gray-500 text-sm font-bold mb-2 mt-4"
-        for="username"
-      >
+      <label className="block text-gray-500 text-sm font-bold mb-2 mt-4">
         Valor Máximo
       </label>
       <input

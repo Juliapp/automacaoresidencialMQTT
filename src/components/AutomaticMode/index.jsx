@@ -3,7 +3,7 @@ import useMqtt from '../../hooks/useMqtt';
 import Switch from '../Switch';
 
 const AutomaticMode = ({ setAutomaticMode, am }) => {
-  const { client } = useMqtt();
+  const { client, automaticMode } = useMqtt();
 
   // const [automaticMode, setAutomaticModes] = useState(false);
 
@@ -12,14 +12,9 @@ const AutomaticMode = ({ setAutomaticMode, am }) => {
   // };
 
   const onToggle = () => {
-    const state = !am;
-    setAutomaticMode((prev) => !prev);
-    client.publish(
-      'AUTOMATICMODE/TOGGLE',
-      state === true ? '1' : '0',
-      2,
-      false
-    );
+    // const state = !am;
+    // setAutomaticMode((prev) => !prev);
+    client.publish('AUTOMATICMODE/TOGGLE', 'TOGGLE', 2, false);
   };
 
   return (
@@ -35,7 +30,7 @@ const AutomaticMode = ({ setAutomaticMode, am }) => {
         </h3>
       </div>
       <div className="card-switch">
-        <Switch checked={am} onChange={onToggle} />
+        <Switch checked={automaticMode} onChange={onToggle} />
       </div>
     </div>
   );

@@ -140,8 +140,6 @@ export default function Connector({ children }) {
       const { topic, payloadString: payload } = message;
       const convertedPayload = payload === '1';
 
-      console.log(`${topic}: ${payload}`);
-
       switch (topic) {
         case TOPIC_AUTOMATIC_MODE_VALOR:
           setAutomaticMode(convertedPayload);

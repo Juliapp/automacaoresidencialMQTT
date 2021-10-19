@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import ButtonSwitch from '../ButtonSwitch';
 import ModalFrame from '../ModalFrame';
 import Sorting from '../Sorting';
+import Tooltip from '@atlaskit/tooltip';
 import './style.css';
+
 const Card = ({
   icon,
   titulo = 'Nome',
@@ -17,13 +19,32 @@ const Card = ({
   return (
     <div className="card-container card">
       <div className="flex">
-        <span className="flex flex-grow card-subtitle flex-row items-center">
-          Status:
-          <div
-            className={`ml-1 w-2 h-2 flex self-center mr-2 rounded-lg ${
-              status ? 'bg-green-600' : 'bg-gray-400'
-            }`}
-          ></div>
+        <span
+          // data-tip={`Status do Dispositivo<br />
+          // VERDE: Dispositivo Ligado<br />
+          // CINZA: Dispositivo Desigado`}
+          // data-for={ref}
+          className="flex flex-grow card-subtitle flex-row items-center"
+        >
+          {/* <ReactTooltip
+            place="bottom"
+            type="light"
+            effect="solid"
+            html={true}
+            target={ref}
+          /> */}
+          <Tooltip
+            content={`Status do Dispositivo | VERDE: Dispositivo Ligado | CINZA: Dispositivo Desigado`}
+          >
+            <div className="flex">
+              Status:
+              <div
+                className={`ml-1 w-2 h-2 flex self-center mr-2 rounded-lg ${
+                  status ? 'bg-green-600' : 'bg-gray-400'
+                }`}
+              ></div>
+            </div>
+          </Tooltip>
         </span>
 
         {togglable ? (
