@@ -8,7 +8,7 @@ const LuzInterna = ({ setOpen }) => {
       <span className="flex justify-center dark:text-gray-50">
         Luzes Internas
       </span>
-      <label class="block text-gray-500 text-sm font-bold mb-2" for="username">
+      <label className="block text-gray-500 text-sm font-bold mb-2">
         A iluminação interna é controlada pelo sensor de presença de pessoas.
       </label>
 

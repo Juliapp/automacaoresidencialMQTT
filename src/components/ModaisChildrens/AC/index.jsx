@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import useMqtt from '../../../hooks/useMqtt';
 
 const AC = ({ setOpen }) => {
-  const { client } = useMqtt();
+  const { client, acMax, acMin } = useMqtt();
 
   const handleACDefault = () => {
     client.publish('AC/RESET', 'TOGGLE', 2, false);
@@ -12,8 +12,8 @@ const AC = ({ setOpen }) => {
   const cancelButtonRef = useRef(null);
   const [minPossible, setMinPossible] = useState();
 
-  const [minValue, setMinValue] = useState();
-  const [maxValue, setMaxValue] = useState();
+  const [minValue, setMinValue] = useState(acMin);
+  const [maxValue, setMaxValue] = useState(acMax);
 
   const handleACMaxMin = () => {
     if (minValue && maxValue) {

@@ -4,6 +4,8 @@ import AutomaticMode from './components/AutomaticMode';
 import Card from './components/Card';
 import Header from './components/Header';
 import AC from './components/ModaisChildrens/AC';
+import Garagem from './components/ModaisChildrens/Garagem';
+import Jardim from './components/ModaisChildrens/Jardim';
 import LuzInterna from './components/ModaisChildrens/LuzInterna';
 import useMqtt from './hooks/useMqtt';
 
@@ -99,7 +101,9 @@ export default function App() {
           togglable={!automaticMode}
           status={jardimLuz}
           onClickButtonSwitch={handleIluminacaoJardimToggle}
-        />
+        >
+          <Jardim />
+        </Card>
         <Card
           icon="icon-garage-area"
           titulo="Iluminação"
@@ -107,7 +111,9 @@ export default function App() {
           togglable={!automaticMode}
           status={garagemLuz}
           onClickButtonSwitch={handleIluminacaoGaragemToggle}
-        />
+        >
+          <Garagem />
+        </Card>
       </div>
     </div>
   );

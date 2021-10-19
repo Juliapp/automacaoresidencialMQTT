@@ -19,20 +19,7 @@ const Card = ({
   return (
     <div className="card-container card">
       <div className="flex">
-        <span
-          // data-tip={`Status do Dispositivo<br />
-          // VERDE: Dispositivo Ligado<br />
-          // CINZA: Dispositivo Desigado`}
-          // data-for={ref}
-          className="flex flex-grow card-subtitle flex-row items-center"
-        >
-          {/* <ReactTooltip
-            place="bottom"
-            type="light"
-            effect="solid"
-            html={true}
-            target={ref}
-          /> */}
+        <span className="flex flex-grow card-subtitle flex-row items-center">
           <Tooltip
             content={`Status do Dispositivo | VERDE: Dispositivo Ligado | CINZA: Dispositivo Desigado`}
           >

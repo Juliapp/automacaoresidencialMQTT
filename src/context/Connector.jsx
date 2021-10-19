@@ -91,10 +91,6 @@ export default function Connector({ children }) {
   // // TOPICS TO PUBLISH
   //////////////////////// CONTROL VARIABLES
 
-  useEffect(() => {
-    console.log('VALOR DO AUTOMATIC MODE', automaticMode);
-  }, [automaticMode]);
-
   const mqttConnect = useCallback(async () => {
     setConnectionStatus({ status: 100, label: 'Conectando' });
     var instanceCliente = new Paho.Client(

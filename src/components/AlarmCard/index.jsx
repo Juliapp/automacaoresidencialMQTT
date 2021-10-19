@@ -56,10 +56,13 @@ const AlarmCard = ({ togglable, status, onClickButtonSwitch }) => {
               <ModalFrame open={modalOpen} setOpen={setModalOpen} />
             </>
           )}
+
           <Link to="/alarmlogs">
-            <button className="mt-2 p-1 rounded cursor-pointer dark:text-gray-50 hover:bg-gray-300 dark:hover:bg-gray-800 hover:bg-opacity-70 transition duration-1000">
-              <i className="icon-list text-xl flex items-center" />
-            </button>
+            <Tooltip content={`Relatório de logs do alarme`}>
+              <button className="mt-2 p-1 rounded cursor-pointer dark:text-gray-50 hover:bg-gray-300 dark:hover:bg-gray-800 hover:bg-opacity-70 transition duration-1000">
+                <i className="icon-list text-xl flex items-center" />
+              </button>
+            </Tooltip>
           </Link>
         </div>
       </div>
