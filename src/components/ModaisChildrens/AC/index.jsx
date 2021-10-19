@@ -17,8 +17,8 @@ const AC = ({ setOpen }) => {
 
   const handleACMaxMin = () => {
     if (minValue && maxValue) {
-      client.publish('AC/TEMPERATURA/MAX', maxValue, 2, false);
-      client.publish('AC/TEMPERATURA/MIN', minValue, 2, false);
+      client.publish('AC/SETTEMPERATURAMAX', maxValue, 2, false);
+      client.publish('AC/SETTEMPERATURAMIN', minValue, 2, false);
     }
     setOpen(false);
   };

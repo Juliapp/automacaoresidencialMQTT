@@ -17,8 +17,8 @@ const Jardim = ({ setOpen }) => {
     if (minValue && maxValue) {
       const max = maxValue.split(':')[0];
       const min = minValue.split(':')[0];
-      client.publish('JARDIM/ILUMINACAO/HORARIOMAXIMO', max, 2, false);
-      client.publish('JARDIM/ILUMINACAO/HORARIOMINIMO', min, 2, false);
+      client.publish('JARDIM/ILUMINACAO/SETHORARIOMAXIMO', max, 2, false);
+      client.publish('JARDIM/ILUMINACAO/SETHORARIOMINIMO', min, 2, false);
     }
     setOpen(false);
   };

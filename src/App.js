@@ -15,17 +15,10 @@ export default function App() {
   const {
     client,
     alarm,
-    // ausenciaPessoas,
-    // acMax,
-    // acMin,
     acTemperatura,
     ac,
-    // garagemLuzMax,
-    // garagemLuzMin,
     garagemLuz,
     internoLuz,
-    // jardimLuzMax,
-    // jardimLuzMin,
     automaticMode,
     jardimLuz,
   } = useMqtt();
@@ -52,18 +45,8 @@ export default function App() {
 
   return (
     <div className="container gap-4 mx-auto flex flex-col px-2">
-      {/* <button type="button" onClick={() => handleClick('false')}>
-        Disable led
-      </button> */}
       <Header />
-
-      {/* <AutomaticMode
-        automaticMode={automaticMode}
-        setAutomaticMode={setAutomaticMode}
-      /> */}
-
       <AutomaticMode am={automaticMode} />
-
       <span className="self-center text-base transition duration-1000 dark:text-gray-50">
         Dispositivos
       </span>
