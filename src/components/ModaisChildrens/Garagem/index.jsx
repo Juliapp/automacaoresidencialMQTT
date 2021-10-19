@@ -15,8 +15,8 @@ const Garagem = ({ setOpen }) => {
 
   const handleMaxMin = () => {
     if (minValue && maxValue) {
-      const max = parseInt(maxValue.split(':')[0]);
-      const min = parseInt(minValue.split(':')[0]);
+      const max = maxValue.split(':')[0];
+      const min = minValue.split(':')[0];
       client.publish('GARAGEM/ILUMINACAO/HORARIOMAXIMO', max, 2, false);
       client.publish('GARAGEM/ILUMINACAO/HORARIOMINIMO', min, 2, false);
     }
