@@ -40,14 +40,20 @@ const AC = ({ setOpen }) => {
       <span className="flex justify-center dark:text-gray-50">
         Ar Condicionado
       </span>
-      <label class="block text-gray-500 text-sm font-bold mb-2" for="username">
+      <label
+        className="block text-gray-500 text-sm font-bold mb-2"
+        for="username"
+      >
         O ar condicionado irá desligar se não houver presença de pessoas.
       </label>
-      <label class="block text-gray-500 text-sm font-bold mb-2" for="username">
+      <label
+        className="block text-gray-500 text-sm font-bold mb-2"
+        for="username"
+      >
         Valor Mínimo
       </label>
       <input
-        class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         id="username"
         type="number"
         max="30"
@@ -57,13 +63,13 @@ const AC = ({ setOpen }) => {
         value={minValue}
       />
       <label
-        class="block text-gray-500 text-sm font-bold mb-2 mt-4"
+        className="block text-gray-500 text-sm font-bold mb-2 mt-4"
         for="username"
       >
         Valor Máximo
       </label>
       <input
-        class="mb-4 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        className="mb-4 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         id="username"
         type="number"
         max="30"
