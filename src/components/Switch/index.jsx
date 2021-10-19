@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactSwitch from 'react-switch';
 
-const Switch = ({ checked, setChecked, ...rest }) => {
+const Switch = ({ checked, onChange, ...rest }) => {
   // const [checked, setChecked] = useState(false);
-  const handleChange = (nextChecked) => {
-    setChecked(nextChecked);
-  };
+  // const handleChange = (nextChecked) => {
+  //   setChecked(nextChecked);
+  // };
 
   return (
     <ReactSwitch
-      onChange={handleChange}
+      onChange={onChange}
       checked={checked}
       className={`react-switch ${rest.className && rest.className}`}
       checkedIcon={false}

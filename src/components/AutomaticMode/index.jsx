@@ -1,7 +1,27 @@
 import React from 'react';
+import useMqtt from '../../hooks/useMqtt';
 import Switch from '../Switch';
 
-const AutomaticMode = ({ automaticMode, setAutomaticMode }) => {
+const AutomaticMode = ({ setAutomaticMode, am }) => {
+  const { client } = useMqtt();
+
+  // const [automaticMode, setAutomaticModes] = useState(false);
+
+  // const onToggle = () => {
+  //   setAutomaticMode((prev) => !prev);
+  // };
+
+  const onToggle = () => {
+    const state = !am;
+    setAutomaticMode((prev) => !prev);
+    client.publish(
+      'AUTOMATICMODE/TOGGLE',
+      state === true ? '1' : '0',
+      2,
+      false
+    );
+  };
+
   return (
     <div className="card rounded-md p-3 sm:p-6 flex flex-1 gap-2 content-between px-2">
       <i
@@ -15,7 +35,7 @@ const AutomaticMode = ({ automaticMode, setAutomaticMode }) => {
         </h3>
       </div>
       <div className="card-switch">
-        <Switch checked={automaticMode} setChecked={setAutomaticMode} />
+        <Switch checked={am} onChange={onToggle} />
       </div>
     </div>
   );

@@ -10,17 +10,9 @@ const AlarmLogs = () => {
   useEffect(() => {
     getAlarmLogs().then((data) => {
       setData(
-        data.map((value) => {
-          const { date, hour, peopleAlarm, doorsAlert, windowsAlert } = value;
-
-          return {
-            date,
-            hour,
-            peopleAlarm: peopleAlarm ? 'ON' : 'OFF',
-            doorsAlert: doorsAlert ? 'ON' : 'OFF',
-            windowsAlert: windowsAlert ? 'ON' : 'OFF',
-          };
-        })
+        data.reduceRight((arr, last, index, coll) => {
+          return (arr = arr.concat(last));
+        }, [])
       );
     });
   }, []);

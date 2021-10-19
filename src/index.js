@@ -7,21 +7,18 @@ import reportWebVitals from './reportWebVitals';
 import './assets/fonts/icons.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Connector from './context/Connector';
-import States from './context/States';
 
 ReactDOM.render(
   <React.StrictMode>
     <Connector>
-      <States>
-        {/* ROUTES */}
-        <BrowserRouter>
-          <Switch>
-            <Route path="/" exact component={App} />
-            <Route path="/alarmlogs" exact component={AlarmLogs} />
-          </Switch>
-        </BrowserRouter>
-        {/*  */}
-      </States>
+      {/* ROUTES */}
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact component={App} />
+          <Route path="/alarmlogs" exact component={AlarmLogs} />
+        </Switch>
+      </BrowserRouter>
+      {/*  */}
     </Connector>
   </React.StrictMode>,
   document.getElementById('root')

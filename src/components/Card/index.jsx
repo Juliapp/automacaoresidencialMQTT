@@ -11,6 +11,7 @@ const Card = ({
   status,
   info,
   onClickButtonSwitch,
+  children,
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
   return (
@@ -33,7 +34,10 @@ const Card = ({
         ) : (
           <>
             <Sorting onClick={() => setModalOpen(!modalOpen)} />
-            <ModalFrame open={modalOpen} setOpen={setModalOpen} />
+            <ModalFrame open={modalOpen} setOpen={setModalOpen}>
+              {children &&
+                React.cloneElement(children, { setOpen: setModalOpen })}
+            </ModalFrame>
           </>
         )}
       </div>

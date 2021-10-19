@@ -3,15 +3,29 @@ import AlarmCard from './components/AlarmCard';
 import AutomaticMode from './components/AutomaticMode';
 import Card from './components/Card';
 import Header from './components/Header';
+import AC from './components/ModaisChildrens/AC';
+import LuzInterna from './components/ModaisChildrens/LuzInterna';
 import useMqtt from './hooks/useMqtt';
-import useStates from './hooks/useStates';
 
 export default function App() {
   const [automaticMode, setAutomaticMode] = useState(false);
-  const { stateAC, stateJardim, stateGaragem, stateInterno, stateAlarme } =
-    useStates();
 
-  const { client } = useMqtt();
+  const {
+    client,
+    alarm,
+    // ausenciaPessoas,
+    // acMax,
+    // acMin,
+    acTemperatura,
+    ac,
+    // garagemLuzMax,
+    // garagemLuzMin,
+    garagemLuz,
+    internoLuz,
+    // jardimLuzMax,
+    // jardimLuzMin,
+    jardimLuz,
+  } = useMqtt();
 
   function handleACToggle(e) {
     client.publish('AC/TOGGLE', 'TOGGLE', 2, false);
@@ -40,13 +54,19 @@ export default function App() {
       </button> */}
       <Header />
 
-      <AutomaticMode
+      {/* <AutomaticMode
         automaticMode={automaticMode}
         setAutomaticMode={setAutomaticMode}
-      />
+      /> */}
+
+      <AutomaticMode setAutomaticMode={setAutomaticMode} am={automaticMode} />
+
+      <span className="self-center text-base transition duration-1000 dark:text-gray-50">
+        Dispositivos
+      </span>
       <AlarmCard
         togglable={!automaticMode}
-        status={stateAlarme?.status}
+        status={alarm}
         onClickButtonSwitch={handleAlarmeToggle}
       />
       <div className=" gap-2 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -55,24 +75,28 @@ export default function App() {
           titulo="Ar Condicionado"
           descricao="Interno"
           togglable={!automaticMode}
-          status={stateAC?.status}
-          info={`${stateAC?.temperatura}°C`}
+          status={ac}
+          info={`${acTemperatura}°C`}
           onClickButtonSwitch={handleACToggle}
-        />
+        >
+          <AC />
+        </Card>
         <Card
           icon="icon-lamp-bulb"
           titulo="Iluminação"
           descricao="Interna"
           togglable={!automaticMode}
-          status={stateInterno?.status}
+          status={internoLuz}
           onClickButtonSwitch={handleIluminacaoInternaToggle}
-        />
+        >
+          <LuzInterna />
+        </Card>
         <Card
           icon="icon-garden-area"
           titulo="Iluminação"
           descricao="Jardim"
           togglable={!automaticMode}
-          status={stateJardim?.status}
+          status={jardimLuz}
           onClickButtonSwitch={handleIluminacaoJardimToggle}
         />
         <Card
@@ -80,7 +104,7 @@ export default function App() {
           titulo="Iluminação"
           descricao="Garagem"
           togglable={!automaticMode}
-          status={stateGaragem?.status}
+          status={garagemLuz}
           onClickButtonSwitch={handleIluminacaoGaragemToggle}
         />
       </div>
