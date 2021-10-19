@@ -11,7 +11,15 @@ const AlarmLogs = () => {
     getAlarmLogs().then((data) => {
       setData(
         data.reduceRight((arr, last, index, coll) => {
-          return (arr = arr.concat(last));
+          const { date, hour, peopleAlarm, doorsAlert, windowsAlert } = last;
+
+          return (arr = arr.concat({
+            date,
+            hour,
+            peopleAlarm: peopleAlarm ? 'ON' : 'OFF',
+            doorsAlert: doorsAlert ? 'ON' : 'OFF',
+            windowsAlert: windowsAlert ? 'ON' : 'OFF',
+          }));
         }, [])
       );
     });

@@ -37,7 +37,6 @@
 }
 .icon-alarm:before {
   content: '\e903';
-  color: #ecfdf5;
 }
 .icon-app-menu:before {
   content: '\e904';
