@@ -7,7 +7,7 @@ import Tooltip from '@atlaskit/tooltip';
 
 import useMqtt from '../../hooks/useMqtt';
 
-const AlarmCard = ({ togglable, status, onClickButtonSwitch }) => {
+const AlarmCard = ({ togglable, status, onClickButtonSwitch, children }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const { alarm } = useMqtt();
@@ -53,7 +53,10 @@ const AlarmCard = ({ togglable, status, onClickButtonSwitch }) => {
           ) : (
             <>
               <Sorting onClick={() => setModalOpen(!modalOpen)} />
-              <ModalFrame open={modalOpen} setOpen={setModalOpen} />
+              <ModalFrame open={modalOpen} setOpen={setModalOpen}>
+                {children &&
+                  React.cloneElement(children, { setOpen: setModalOpen })}
+              </ModalFrame>
             </>
           )}
 

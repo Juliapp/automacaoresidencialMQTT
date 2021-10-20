@@ -7,6 +7,7 @@ import AC from './components/ModaisChildrens/AC';
 import Garagem from './components/ModaisChildrens/Garagem';
 import Jardim from './components/ModaisChildrens/Jardim';
 import LuzInterna from './components/ModaisChildrens/LuzInterna';
+import Alarme from './components/ModaisChildrens/Alarme';
 import useMqtt from './hooks/useMqtt';
 
 export default function App() {
@@ -54,7 +55,9 @@ export default function App() {
         togglable={!automaticMode}
         status={alarm}
         onClickButtonSwitch={handleAlarmeToggle}
-      />
+      >
+        <Alarme />
+      </AlarmCard>
       <div className=" gap-2 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         <Card
           icon="icon-air-conditioner"
