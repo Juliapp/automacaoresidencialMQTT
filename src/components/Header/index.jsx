@@ -4,20 +4,23 @@ import DarkModeSwitch from '../DarkModeSwitch';
 import Tooltip from '@atlaskit/tooltip';
 
 const Header = () => {
-  const { connectionStatus } = useMqtt();
+  const { connectionStatus, statusRasp } = useMqtt();
 
-  const color =
-    connectionStatus.status === 100
+  function getColor(status) {
+    return status === 100
       ? 'bg-yellow-600'
-      : connectionStatus.status === 200
+      : status === 200
       ? 'bg-green-600'
-      : connectionStatus.status === 400
+      : status === 400
       ? 'bg-red-600'
       : 'bg-gray-400';
+  }
+  const color = getColor(connectionStatus.status);
+  const raspcolor = getColor(statusRasp);
 
   return (
     // <header className="flex justify-between items-center p-6 container">
-    <header className="flex flex-row justify-around items-center p-3 sm:p-6 container mx-auto ">
+    <header className="flex flex-row justify-between items-center p-3 sm:p-6 container mx-auto ">
       <div className="flex justify-start">
         <a href="/">
           <img
@@ -29,21 +32,30 @@ const Header = () => {
       </div>
       {/*    */}
 
-      <div className="flex flex-1 justify-center">
-        <Tooltip
-          content={`Status da conexão com o broker
+      <Tooltip
+        content={`Status da conexão
         VERMELHO: Falha na conexão | VERDE: Conectado | LARANJA: Conectando | CINZA: Pronto para conectar`}
-        >
+      >
+        <div className="flex flex-1 justify-center gap-3">
+          {/* CONEXÃO COM O BROKER */}
           <div className="flex">
             <div
               className={`w-2 h-2 flex self-center mr-2 rounded-lg animate-pulse ${color}`}
             ></div>
-            <h1 className="text-base transition duration-1000 dark:text-gray-50">{`${connectionStatus.label}`}</h1>
+            <h1 className="text-base transition duration-1000 dark:text-gray-50">{`Broker`}</h1>
           </div>
-        </Tooltip>
-        {/* data-tip="Status da conexão com o broker" */}
-        {/* <ReactTooltip place="bottom" type="light" effect="solid" /> */}
-      </div>
+          {/* CONEXÃO COM A RASP */}
+          <div className="flex">
+            <div
+              className={`w-2 h-2 flex self-center mr-2 rounded-lg animate-pulse ${raspcolor}`}
+            ></div>
+            <h1 className="text-base transition duration-1000 dark:text-gray-50">{`Raspberry`}</h1>
+          </div>
+
+          {/* data-tip="Status da conexão com o broker" */}
+          {/* <ReactTooltip place="bottom" type="light" effect="solid" /> */}
+        </div>
+      </Tooltip>
 
       <div className="py-auto flex">
         {/* <Switch className="sm:h-4" /> */}

@@ -4,6 +4,7 @@ import { MqttContext } from '../context/Connector';
 export default function useMqtt() {
   const {
     connectionStatus,
+    statusRasp,
     client,
     automaticMode,
     alarm,
@@ -23,6 +24,7 @@ export default function useMqtt() {
   } = useContext(MqttContext);
   return {
     connectionStatus,
+    statusRasp,
     client,
     automaticMode,
     alarm,

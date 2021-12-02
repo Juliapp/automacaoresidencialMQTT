@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { createContext } from 'use-context-selector';
 import { v4 } from 'uuid';
 import * as api from '../api';
+import { CronJob } from 'cron';
 
 export const MqttContext = createContext();
 const TOPIC_ILUMINACAO_JARDIM = 'JARDIM/ILUMINACAO/VALOR';
@@ -19,6 +20,8 @@ const TOPIC_ARCONDICIONADO_MIN = 'AC/TEMPERATURAMIN';
 const TOPIC_ARCONDICIONADO_AUSENCIA_PESSOAS = 'AC/TEMPOAUSENCIAPESSOAS';
 const TOPIC_ALARME = 'ALARME/VALOR';
 const TOPIC_AUTOMATIC_MODE_VALOR = 'AUTOMATICMODE/VALOR';
+
+const TOPIC_STATUS_RASP = 'PINGRESPONSE';
 
 // // TOPICS TO PUBLISH
 // #define TOPIC_ILUMINACAO_JARDIM "JARDIM/ILUMINACAO/VALOR"
@@ -58,13 +61,36 @@ const TOPIC_AUTOMATIC_MODE_VALOR = 'AUTOMATICMODE/VALOR';
 // #define TOPIC_AUTOMATIC_MODE_TOGGLE "AUTOMATICMODE/TOGGLE"
 
 export default function Connector({ children }) {
+  const [cronJob, setCronJob] = useState(null);
+  useEffect(() => {
+    if (cronJob) cronJob.start();
+  }, [cronJob]);
+
+  // function setCron(newCron){
+  //   cron = newCron
+  // }
+
   const [pastStates, setPastStates] = useState(false);
 
   const mountedRef = useRef(true);
   const [connectionStatus, setConnectionStatus] = useState({
     status: 100,
-    label: 'Não conectado',
   });
+
+  const [raspResponse, setRaspResponse] = useState(false);
+  const [statusRasp, setStatusRasp] = useState({ status: 100 });
+
+  function raspRequestFunction() {
+    console.log('entrou no cron');
+    console.log(client);
+
+    raspResponse
+      ? setStatusRasp({ status: 200 })
+      : setStatusRasp({ status: 100 });
+    if (client) client.publish('PINGREQUEST', 'pingrasp', 2, false);
+    setRaspResponse(false);
+  }
+
   const [client, setClient] = useState();
 
   const [automaticMode, setAutomaticMode] = useState(false);
@@ -87,7 +113,7 @@ export default function Connector({ children }) {
   //////////////////////// CONTROL VARIABLES
 
   const mqttConnect = useCallback(async () => {
-    setConnectionStatus({ status: 100, label: 'Conectando' });
+    setConnectionStatus({ status: 100 });
     var instanceCliente = new Paho.Client(
       process.env.REACT_APP_HOST,
       parseInt(process.env.REACT_APP_PORT),
@@ -96,7 +122,7 @@ export default function Connector({ children }) {
 
     instanceCliente.connect({
       onSuccess: () => {
-        setConnectionStatus({ status: 200, label: 'Conectado' });
+        setConnectionStatus({ status: 200 });
 
         instanceCliente.subscribe(TOPIC_ILUMINACAO_JARDIM);
         instanceCliente.subscribe(TOPIC_ILUMINACAO_JARDIM_MAX);
@@ -112,9 +138,13 @@ export default function Connector({ children }) {
         instanceCliente.subscribe(TOPIC_ARCONDICIONADO_AUSENCIA_PESSOAS);
         instanceCliente.subscribe(TOPIC_ALARME);
         instanceCliente.subscribe(TOPIC_AUTOMATIC_MODE_VALOR);
+        instanceCliente.subscribe(TOPIC_STATUS_RASP);
+
+        let job = new CronJob('* * * * *', raspRequestFunction);
+        setCronJob(job);
       },
       onFailure: () => {
-        setConnectionStatus({ status: 400, label: 'Erro ao se conectar' });
+        setConnectionStatus({ status: 400 });
       },
       password: process.env.REACT_APP_PASSWORD,
       userName: process.env.REACT_APP_USERNAME,
@@ -124,12 +154,17 @@ export default function Connector({ children }) {
     });
 
     instanceCliente.onConnectionLost = () => {
-      setConnectionStatus({ status: 400, label: 'Conexão perdida' });
+      setConnectionStatus({ status: 400 });
     };
 
     instanceCliente.onMessageArrived = function (message) {
       const { topic, payloadString: payload } = message;
       const convertedPayload = payload === '1';
+
+      if (topic === TOPIC_STATUS_RASP) {
+        setRaspResponse(true);
+        return;
+      }
 
       switch (topic) {
         case TOPIC_AUTOMATIC_MODE_VALOR:
@@ -175,7 +210,6 @@ export default function Connector({ children }) {
         case TOPIC_ALARME:
           setAlarm(convertedPayload);
           break;
-
         default:
           break;
       }
@@ -241,6 +275,7 @@ export default function Connector({ children }) {
     <MqttContext.Provider
       value={{
         connectionStatus,
+        statusRasp,
         client,
         automaticMode,
         alarm,
