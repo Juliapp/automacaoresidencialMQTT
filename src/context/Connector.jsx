@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { createContext } from 'use-context-selector';
 import { v4 } from 'uuid';
 import * as api from '../api';
-import { CronJob } from 'cron';
+// import { CronJob } from 'cron';
 
 export const MqttContext = createContext();
 const TOPIC_ILUMINACAO_JARDIM = 'JARDIM/ILUMINACAO/VALOR';
@@ -23,52 +23,8 @@ const TOPIC_AUTOMATIC_MODE_VALOR = 'AUTOMATICMODE/VALOR';
 
 const TOPIC_STATUS_RASP = 'PINGRESPONSE';
 
-// // TOPICS TO PUBLISH
-// #define TOPIC_ILUMINACAO_JARDIM "JARDIM/ILUMINACAO/VALOR"
-// #define TOPIC_ILUMINACAO_JARDIM_MAX "JARDIM/ILUMINACAO/MAX"
-// #define TOPIC_ILUMINACAO_JARDIM_MIN "JARDIM/ILUMINACAO/MIN"
-
-// #define TOPIC_ILUMINACAO_INTERNO "INTERNO/ILUMINACAO/VALOR"
-
-// #define TOPIC_ILUMINACAO_GARAGEM "GARAGEM/ILUMINACAO/VALOR"
-// #define TOPIC_ILUMINACAO_GARAGEM_MAX "GARAGEM/ILUMINACAO/MAX"
-// #define TOPIC_ILUMINACAO_GARAGEM_MIN "GARAGEM/ILUMINACAO/MIN"
-
-// #define TOPIC_ARCONDICIONADO "AC/VALOR"
-// #define TOPIC_ARCONDICIONADO_TEMPERATURA "AC/TEMPERATURA"
-// #define TOPIC_ARCONDICIONADO_MAX "AC/MAX"
-// #define TOPIC_ARCONDICIONADO_MIN "AC/MIN"
-// #define TOPIC_ARCONDICIONADO_AUSENCIA_PESSOAS "AC/AUSENCIA_PESSOAS"
-
-// #define TOPIC_ALARME "ALARME/VALOR"
-
-// #define TOPIC_AUTOMATIC_MODE_VALOR "AUTOMATICMODE/VALOR"
-
-// //TOPICS TO SUBSCRIBE
-// #define TOPIC_ARCONDICIONADO_TEMPERATURA_MAX "AC/TEMPERATURA/MAX"
-// #define TOPIC_ARCONDICIONADO_TEMPERATURA_MIN "AC/TEMPERATURA/MIN"
-// #define TOPIC_ARCONDICIONADO_TEMPO_AUSENCIA_PESSOAS "AC/TEMPERATURA/TEMPOAMBIENTEVAZIO"
-// #define TOPIC_ILUMINACAO_JARDIM_TOGGLE "JARDIM/ILUMINACAO/TOGGLE"
-// #define TOPIC_ILUMINACAO_JARDIM_HORARIO_MAXIMO "JARDIM/ILUMINACAO/HORARIOMAXIMO"
-// #define TOPIC_ILUMINACAO_JARDIM_HORARIO_MINIMO "JARDIM/ILUMINACAO/HORARIOMINIMO"
-// #define TOPIC_ILUMINACAO_GARAGEM_TOGGLE "GARAGEM/ILUMINACAO/TOGGLE"
-// #define TOPIC_ILUMINACAO_GARAGEM_HORARIO_MAXIMO "GARAGEM/ILUMINACAO/HORARIOMAXIMO"
-// #define TOPIC_ILUMINACAO_GARAGEM_HORARIO_MINIMO "GARAGEM/ILUMINACAO/HORARIOMINIMO"
-// #define TOPIC_ILUMINACAO_INTERNO_TOGGLE "INTERNO/ILUMINACAO/TOGGLE"
-// #define TOPIC_ARCONDICIONADO_TOGGLE "AC/TOGGLE"
-// #define TOPIC_ALARME_TOGGLE "ALARME/TOGGLE"
-// #define TOPIC_AC_RESET "AC/RESET"
-// #define TOPIC_AUTOMATIC_MODE_TOGGLE "AUTOMATICMODE/TOGGLE"
-
 export default function Connector({ children }) {
-  const [cronJob, setCronJob] = useState(null);
-  useEffect(() => {
-    if (cronJob) cronJob.start();
-  }, [cronJob]);
-
-  // function setCron(newCron){
-  //   cron = newCron
-  // }
+  const [client, setClient] = useState();
 
   const [pastStates, setPastStates] = useState(false);
 
@@ -77,21 +33,7 @@ export default function Connector({ children }) {
     status: 100,
   });
 
-  const [raspResponse, setRaspResponse] = useState(false);
   const [statusRasp, setStatusRasp] = useState({ status: 100 });
-
-  function raspRequestFunction() {
-    console.log('entrou no cron');
-    console.log(client);
-
-    raspResponse
-      ? setStatusRasp({ status: 200 })
-      : setStatusRasp({ status: 100 });
-    if (client) client.publish('PINGREQUEST', 'pingrasp', 2, false);
-    setRaspResponse(false);
-  }
-
-  const [client, setClient] = useState();
 
   const [automaticMode, setAutomaticMode] = useState(false);
   const [alarm, setAlarm] = useState(false);
@@ -108,6 +50,7 @@ export default function Connector({ children }) {
   const [jardimLuzMax, setJardimLuzMax] = useState(false);
   const [jardimLuzMin, setJardimLuzMin] = useState(false);
   const [jardimLuz, setJardimLuz] = useState(false);
+  const [timecron, setTimeCron] = useState(1);
 
   // // TOPICS TO PUBLISH
   //////////////////////// CONTROL VARIABLES
@@ -140,8 +83,8 @@ export default function Connector({ children }) {
         instanceCliente.subscribe(TOPIC_AUTOMATIC_MODE_VALOR);
         instanceCliente.subscribe(TOPIC_STATUS_RASP);
 
-        let job = new CronJob('* * * * *', raspRequestFunction);
-        setCronJob(job);
+        // instanceCliente.publish('PINGREQUEST', 'pingrasp', 2, false);
+        // cron(instanceCliente, 1);
       },
       onFailure: () => {
         setConnectionStatus({ status: 400 });
@@ -161,10 +104,10 @@ export default function Connector({ children }) {
       const { topic, payloadString: payload } = message;
       const convertedPayload = payload === '1';
 
-      if (topic === TOPIC_STATUS_RASP) {
-        setRaspResponse(true);
-        return;
-      }
+      // if (topic === TOPIC_STATUS_RASP) {
+      //   setStatusRasp({ status: 200, timestemp: Date.now() });
+      //   return;
+      // }
 
       switch (topic) {
         case TOPIC_AUTOMATIC_MODE_VALOR:
@@ -266,14 +209,33 @@ export default function Connector({ children }) {
         setAcReset(ac_reset);
       });
 
+      api.getPing().then((value) => {
+        value ? setStatusRasp({ status: 200 }) : setStatusRasp({ status: 400 });
+      });
+
+      api.getTimeCron().then((data) => {
+        setTimeCron(data);
+      });
       setPastStates(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      console.log('mandando pra api');
+      api.getPing().then((value) => {
+        value ? setStatusRasp({ status: 200 }) : setStatusRasp({ status: 400 });
+      });
+    }, timecron * 60 * 1000);
+    return () => clearInterval(interval);
+  }, [timecron]);
+
   return (
     <MqttContext.Provider
       value={{
+        timecron,
+        setTimeCron,
         connectionStatus,
         statusRasp,
         client,

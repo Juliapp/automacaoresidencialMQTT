@@ -3,6 +3,8 @@ import { MqttContext } from '../context/Connector';
 
 export default function useMqtt() {
   const {
+    timecron,
+    setTimeCron,
     connectionStatus,
     statusRasp,
     client,
@@ -23,6 +25,8 @@ export default function useMqtt() {
     jardimLuz,
   } = useContext(MqttContext);
   return {
+    timecron,
+    setTimeCron,
     connectionStatus,
     statusRasp,
     client,
