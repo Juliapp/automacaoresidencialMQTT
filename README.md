@@ -1,3 +1,59 @@
+# Automação residencial
+
+### O problema
+
+Neste problema, foi proposto a implementação do protótipo de um equipamento que colete as informações do circuito controlador de um sistema inteligente, disponibilizando em uma página Web, além de uma Assistente de voz, na qual foi escolhida a Google Assistente, utilizando o Dialogflow. O circuito controlador é o mesmo do problema anterior, contendo: iluminação da garagem e do jardim, iluminação de ambientes internos, central de alarme e climatização na sala de TV. Para a solução deste protótipo, foi determinado o protocolo de comunicação MQTT para as trocas de mensagens entre a página web e o sistema inteligente (circuito controlador), além da troca de mensagem da Assistente com o circuito controlador.
+
+O frontend da aplicação está hospedado na plataforma Vercel nesse <a href="https://automacaoresidencial-mqtt.vercel.app/"> Link </a>
+
+## Manuseio da interface
+
+### Conexão com o broker
+
+Na parte superior da interface há um indicador de status da conexão do frontend com o broker e com a <em>Raspberry</em>. Também há um botão para a configuração do tempo de ping para a rasp.
+
+<img src="./images/conexao.png">
+
+### Modo automático
+
+Logo em seguida há um card indicando o modo automático. Quando ativo, a aplicação passa a ser controlada pela as entradas da rasp, e quando inativo o usuário pode controlar os estados com botões na aplicação
+
+<img src="./images/modo automatico.png">
+
+### Alarme
+
+Indica o status do alarme e emite um sinal vermelho quando há uma potencial invasão acontecendo. Quando normalizado o ícone e o status ficam verdes
+
+<img src="./images/alarme.png">
+
+## Ar condicionado
+
+Indicação do status do ar condicionado e a sua temperatura
+
+<img src="./images/ac.jfif">
+
+## Configuração dos dispositivos
+
+Faixa de operação da temperatura quando está em modo automático ao clicar no ícone de configuração
+
+<img src="./images/faixa de operacao ac.jfif">
+
+A iluminação interna e o alarme são controlados por sensores
+
+<img src="./images/controle alarme.jfif">
+
+O jardim e a garagem podem ter seus horários modificados
+
+<img src="./images/controle garagem.png">
+
+## Logs do Alarme
+
+Na rota `/alarmlogs` que pode ser acessada no card do alarm é possível ver o os logs do alarme
+
+<img src="./images/logs.png">
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
