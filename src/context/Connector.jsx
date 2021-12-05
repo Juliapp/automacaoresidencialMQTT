@@ -104,11 +104,6 @@ export default function Connector({ children }) {
       const { topic, payloadString: payload } = message;
       const convertedPayload = payload === '1';
 
-      // if (topic === TOPIC_STATUS_RASP) {
-      //   setStatusRasp({ status: 200, timestemp: Date.now() });
-      //   return;
-      // }
-
       switch (topic) {
         case TOPIC_AUTOMATIC_MODE_VALOR:
           setAutomaticMode(convertedPayload);
